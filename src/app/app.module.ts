@@ -5,19 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
-
+import { TasksDynamicFormComponent } from './components/tasks-dynamic-form/tasks-dynamic-form.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TasksListComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent, CreateTaskComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

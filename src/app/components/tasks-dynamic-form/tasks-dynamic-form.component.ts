@@ -19,13 +19,13 @@ import { TasksService } from 'src/app/services/tasks-service/tasks.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-tasks-list',
-  templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.css'],
+  selector: 'app-tasks-dynamic-form',
+  templateUrl: './tasks-dynamic-form.component.html',
+  styleUrls: ['./tasks-dynamic-form.component.css'],
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
 })
-export class TasksListComponent implements OnInit {
+export class TasksDynamicFormComponent {
   private taskService = inject(TasksService);
   private fb = inject(FormBuilder);
   public tasksForm!: FormArray;
