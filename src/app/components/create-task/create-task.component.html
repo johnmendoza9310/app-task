@@ -1,1 +1,125 @@
-<p>create-task works!</p>
+<h1 class="form-title">CREACIÓN DE TAREA</h1>
+
+<form [formGroup]="tasksForm" (ngSubmit)="updateTasks()" class="task-form">
+  <!-- Sección de Tarea -->
+  <div class="task-section">
+    <div class="form-group">
+      <label for="taskName">Nombre de la tarea:</label>
+      <input
+        formControlName="taskName"
+        id="taskName"
+        type="text"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="limitDate">Fecha límite:</label>
+      <input
+        formControlName="limitDate"
+        id="limitDate"
+        type="date"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="check-group">
+      <label for="taskComplete" >¿Completada?</label>
+      <input
+        type="checkbox"
+        formControlName="taskComplete"
+        id="taskComplete"
+        class="checkbox-control"
+      />
+    </div>
+  </div>
+
+  <!-- Sección de Personas Asociadas -->
+  <div class="person-section">
+    <h2>Personas Asociadas</h2>
+    <div formArrayName="person">
+      <div
+        *ngFor="let person of personFormArray.controls; let personIndex = index"
+        [formGroupName]="personIndex"
+        class="person-group"
+      >
+        <div class="form-group">
+          <label for="personName">Nombre completo:</label>
+          <input
+            formControlName="personName"
+            id="personName"
+            type="text"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Edad:</label>
+          <input
+            formControlName="age"
+            id="age"
+            type="number"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <!-- Sección de Habilidades -->
+        <div formArrayName="skill" class="skill-section">
+          <h5>Habilidades</h5>
+          <button
+            type="button"
+            (click)="addskillByPersonIndex(personIndex)"
+            class="add-skill-btn"
+          >
+            Añadir habilidad
+          </button>
+
+          <div
+            *ngFor="
+              let skillControl of getSkillsByPersonIndex(personIndex).controls;
+              let skillIndex = index
+            "
+            class="skill-group"
+          >
+            <div class="skill-row">
+              <input
+                [formControlName]="skillIndex"
+                id="skill"
+                type="text"
+                required
+                class="form-control skill-input"
+              />
+              <button
+                type="button"
+                (click)="removeSkill(personIndex, skillIndex)"
+                class="remove-btn"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="removePerson(personIndex)"
+          class="remove-btn"
+        >
+          Eliminar persona
+        </button>
+      </div>
+
+      <button type="button" (click)="addPerson()" class="add-person-btn">
+        Añadir persona
+      </button>
+    </div>
+  </div>
+
+  <!-- Botón para guardar todas las tareas -->
+  <div class="submit-section">
+    <button type="submit" class="submit-btn">Guardar Tarea</button>
+  </div>
+</form>

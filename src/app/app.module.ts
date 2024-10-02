@@ -9,7 +9,7 @@ import { TasksDynamicFormComponent } from './components/tasks-dynamic-form/tasks
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateTaskComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

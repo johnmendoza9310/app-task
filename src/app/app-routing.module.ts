@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TasksDynamicFormComponent } from './components/tasks-dynamic-form/tasks-dynamic-form.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'task-dynamic-form',
     component: TasksDynamicFormComponent,
+  },
+  {
+    path: 'create-task',
+    component: CreateTaskComponent,
   },
   {
     path: '',

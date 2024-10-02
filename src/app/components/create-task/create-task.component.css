@@ -1,0 +1,214 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.task-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+button {
+  cursor: pointer;
+}
+
+.add-task-btn,
+.remove-btn {
+  background-color: #c70505;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.add-task-btn:hover,
+.remove-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Botones verdes */
+.add-skill-btn,
+.add-person-btn {
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.add-skill-btn:hover,
+.add-person-btn:hover {
+  background-color: #218838;
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+/* Section Styles */
+.task-section,
+.person-section,
+.skill-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.person-group,
+.skill-group {
+  margin-bottom: 10px;
+}
+
+.person-group {
+  border-bottom: 1px dashed #3d3d3d;
+
+  padding-bottom: 20px;
+}
+/* Skills input and remove button in the same row */
+.skill-row {
+  display: flex;
+  align-items: center;
+}
+
+.skill-input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center; /* Alinear items verticalmente */
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  width: 200px; /* Ajustar el ancho del label */
+}
+
+.check-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-group label {
+  font-weight: bold;
+}
+/* Grupo para el checkbox */
+.checkbox-group {
+  display: flex; /* Usar flex para centrar */
+  flex-direction: column; /* Colocar label y checkbox en columna */
+  align-items: center; /* Centrar horizontalmente */
+  margin-bottom: 15px; /* Espaciado inferior */
+}
+
+.checkbox-group label {
+  margin-bottom: 5px; /* Espaciado inferior del label */
+}
+
+.checkbox-control {
+  margin-top: 5px; /* Espaciado superior del checkbox */
+}
+
+.form-control,
+.checkbox-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Media Queries */
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .task-form {
+    padding: 10px;
+  }
+
+  .form-control,
+  .checkbox-control {
+    padding: 8px;
+  }
+
+  .add-task-btn,
+  .remove-btn,
+  .add-skill-btn,
+  .add-person-btn,
+  .submit-btn {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .skill-row {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: stretch; /* Alinea items al inicio */
+  }
+
+  .skill-input {
+    margin-right: 0; /* Elimina margen derecho */
+    margin-bottom: 10px; /* Añade espacio entre input y botón */
+  }
+}
+
+/* Estilos para tabletas */
+@media (min-width: 601px) and (max-width: 900px) {
+  .task-form {
+    padding: 15px;
+  }
+
+  .add-task-btn,
+  .remove-btn,
+  .add-skill-btn,
+  .add-person-btn,
+  .submit-btn {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 901px) {
+  .task-form {
+    padding: 20px;
+  }
+
+  .form-control,
+  .checkbox-control {
+    padding: 10px;
+  }
+}
