@@ -1,7 +1,7 @@
 export interface ITask {
   taskName: string | null;
   limitDate: string | null;
-taskComplete: boolean;
+  taskComplete: boolean;
   person: IPerson[];
 }
 

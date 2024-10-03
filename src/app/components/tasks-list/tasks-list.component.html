@@ -26,7 +26,7 @@
 </button>
 
 <div *ngFor="let task of tasksfilter; let i = index" class="task-item">
-  <h2 class="task-title">Tarea {{ i + 1 }} - {{ task.limitDate | date }}</h2>
+  <h2 class="task-title">Tarea {{ task.taskName }} - {{ task.limitDate | date }}</h2>
   <h3 class="person-title">Personas Asociadas:</h3>
   <div *ngFor="let person of task.person" class="person-info">
     <p class="person-detail">- {{ person.personName }} ({{ person.age }})</p>
