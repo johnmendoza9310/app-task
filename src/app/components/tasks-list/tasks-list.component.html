@@ -1,6 +1,6 @@
-<!-- <h1>LISTA DE TAREAS</h1>
-<div>
-  <h2>Filtrar Tareas</h2>
+<h1 class="task-list-title">LISTA DE TAREAS</h1>
+<div class="filter-cont">
+  <h2>Filtros:</h2>
   <button
     (click)="filterTaskBycondition('all')"
     [class.active]="currentFilter === 'all'"
@@ -21,103 +21,15 @@
   </button>
 </div>
 
-<form [formGroup]="taskGroup" (ngSubmit)="updateTasks()">
-  <button type="button" (click)="addTask()">Añadir tarea</button>
-  <div formArrayName="tasksForm">
-    <div
-      *ngFor="let task of matchedIndexes; let taskIndex = index"
-      [formGroupName]="matchedIndexes[taskIndex]"
-    >
-      <div>
-        <label for="taskName">Nombre de la tarea:</label>
-        <input formControlName="taskName" id="taskName" type="text" required />
-      </div>
+<button class="navigate-button" [routerLink]="['/create-task']">
+  Crear Tarea
+</button>
 
-      <div>
-        <label for="limitDate">Fecha límite:</label>
-        <input
-          formControlName="limitDate"
-          id="limitDate"
-          type="date"
-          required
-        />
-      </div>
-
-      <div>
-        <label for="taskComplete">¿Completada?</label>
-        <input
-          type="checkbox"
-          formControlName="taskComplete"
-          id="taskComplete"
-          (change)="changeState(matchedIndexes[taskIndex], $event)"
-        />
-      </div>
-
-      <br />
-      <h2>Personas Asociadas</h2>
-      <div formArrayName="person">
-        <div
-          *ngFor="
-            let person of personByTaskIndex(matchedIndexes[taskIndex])
-              ?.controls;
-            let personIndex = index
-          "
-          [formGroupName]="personIndex"
-        >
-          <div>
-            <label for="personName">Nombre completo:</label>
-            <input
-              formControlName="personName"
-              id="personName"
-              type="text"
-              required
-            />
-          </div>
-
-          <div>
-            <label for="age">Edad:</label>
-            <input formControlName="age" id="age" type="text" required />
-          </div>
-
-          <div formArrayName="skill">
-            <h5>Habilidades</h5>
-            <button
-              type="button"
-              (click)="addskillByIndex(matchedIndexes[taskIndex], personIndex)"
-            >
-              Añadir habilidad
-            </button>
-            <div
-              *ngFor="
-                let skill of skillByIndex(
-                  matchedIndexes[taskIndex],
-                  personIndex
-                )?.controls;
-                let skillIndex = index
-              "
-              [formGroupName]="skillIndex"
-            >
-              <label for="skill">Habilidad {{ skillIndex + 1 }}:</label>
-              <input formControlName="skill" id="skill" type="text" required />
-              <button>Eliminar Habilidad</button>
-            </div>
-          </div>
-          <hr>
-        </div>
-
-        <button
-          type="button"
-          (click)="addPersonByTaskIndex(matchedIndexes[taskIndex])"
-        >
-          Añadir persona
-        </button>
-      </div>
-
-      <hr />
-    </div>
+<div *ngFor="let task of tasksfilter; let i = index" class="task-item">
+  <h2 class="task-title">Tarea {{ i + 1 }} - {{ task.limitDate | date }}</h2>
+  <h3 class="person-title">Personas Asociadas:</h3>
+  <div *ngFor="let person of task.person" class="person-info">
+    <p class="person-detail">- {{ person.personName }} ({{ person.age }})</p>
+    <p class="skills-title">- Habilidades: {{ person.skill.join(", ") }}</p>
   </div>
-
-  <div>
-    <button type="submit">Guardar Tareas</button>
-  </div>
-</form> -->
+</div>

@@ -1,7 +1,6 @@
 <h1 class="form-title">CREACIÓN DE TAREA</h1>
 
-<form [formGroup]="tasksForm" (ngSubmit)="updateTasks()" class="task-form">
-  <!-- Sección de Tarea -->
+<form [formGroup]="tasksForm" (ngSubmit)="addTask()" class="task-form">
   <div class="task-section">
     <div class="form-group">
       <label for="taskName">Nombre de la tarea:</label>
@@ -9,10 +8,12 @@
         formControlName="taskName"
         id="taskName"
         type="text"
-        required
         class="form-control"
       />
     </div>
+    <p *ngIf="validateErrors(tasksForm.get('taskName'))" class="error">
+      Escribe un nombre valido para la tarea
+    </p>
 
     <div class="form-group">
       <label for="limitDate">Fecha límite:</label>
@@ -20,13 +21,15 @@
         formControlName="limitDate"
         id="limitDate"
         type="date"
-        required
         class="form-control"
       />
     </div>
+    <p *ngIf="validateErrors(tasksForm.get('limitDate'))" class="error">
+      Digita una fecha
+    </p>
 
     <div class="check-group">
-      <label for="taskComplete" >¿Completada?</label>
+      <label for="taskComplete">¿Completada?</label>
       <input
         type="checkbox"
         formControlName="taskComplete"
@@ -36,9 +39,15 @@
     </div>
   </div>
 
-  <!-- Sección de Personas Asociadas -->
   <div class="person-section">
     <h2>Personas Asociadas</h2>
+    <p
+      *ngIf="personFormArray?.errors?.['duplicateName'] && personFormArray.value.length > 0"
+      class="error"
+    >
+      Existen nombres duplicados en la tarea
+      {{ tasksForm.get("taskName")?.value }}
+    </p>
     <div formArrayName="person">
       <div
         *ngFor="let person of personFormArray.controls; let personIndex = index"
@@ -51,10 +60,12 @@
             formControlName="personName"
             id="personName"
             type="text"
-            required
             class="form-control"
           />
         </div>
+        <p *ngIf="validateErrors(person.get('personName'))" class="error">
+          Escribe un nombre valido superior a 4 caracteres
+        </p>
 
         <div class="form-group">
           <label for="age">Edad:</label>
@@ -62,14 +73,21 @@
             formControlName="age"
             id="age"
             type="number"
-            required
             class="form-control"
           />
         </div>
+        <p *ngIf="validateErrors(person.get('age'))" class="error">
+          Escribe la edad
+        </p>
 
-        <!-- Sección de Habilidades -->
         <div formArrayName="skill" class="skill-section">
           <h5>Habilidades</h5>
+          <p
+            *ngIf="formSubmitted && person.get('skill')?.value.length <= 0"
+            class="error"
+          >
+            Añade almenos una habilidad
+          </p>
           <button
             type="button"
             (click)="addskillByPersonIndex(personIndex)"
@@ -90,7 +108,6 @@
                 [formControlName]="skillIndex"
                 id="skill"
                 type="text"
-                required
                 class="form-control skill-input"
               />
               <button
@@ -118,8 +135,13 @@
     </div>
   </div>
 
-  <!-- Botón para guardar todas las tareas -->
   <div class="submit-section">
     <button type="submit" class="submit-btn">Guardar Tarea</button>
+    <button class="navigate-button submit-btn" [routerLink]="['/task-list']">
+      Ver listado de tareas
+    </button>
   </div>
+  <p *ngIf="formSubmitted && !tasksForm.valid" class="error">
+    Diligencie el formulario correctamente
+  </p>
 </form>

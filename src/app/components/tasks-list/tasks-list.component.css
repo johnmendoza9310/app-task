@@ -1,15 +1,185 @@
-button {
-  margin-right: 10px;
-  padding: 10px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-.active {
+.task-list-title {
+  text-align: center;
+  color: #007bff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-cont {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-cont h2 {
+  margin-right: 1rem;
+}
+
+.filter-cont button,
+.navigate-button {
   background-color: #007bff;
   color: white;
   border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
+.navigate-button {
+  background-color: #28a745;
+  margin-bottom: 20px;
+}
+
+.filter-cont button.active {
   background-color: #0056b3;
-  color: white;
+}
+
+.filter-cont button:hover {
+  background-color: #0056b3;
+}
+
+.task-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.task-title {
+  font-size: 1.4rem;
+  color: #007bff;
+  margin-bottom: 8px;
+}
+
+.person-title {
+  font-size: 1.2rem;
+  color: #28a745;
+  margin-bottom: 8px;
+}
+
+.person-info {
+  margin-left: 20px;
+}
+
+.person-detail {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.skills-title {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+hr {
+  border: 1px solid #ddd;
+  margin: 16px 0;
+}
+
+@media (max-width: 576px) {
+  .filter-cont {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .filter-cont button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .task-title {
+    font-size: 1.2rem;
+  }
+
+  .person-detail,
+  .skills-title {
+    font-size: 0.9rem;
+  }
+
+  .task-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-cont {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .filter-cont h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .filter-cont button {
+    font-size: 0.9rem;
+    padding: 7px 14px;
+    width: 100%;
+  }
+
+  .filter-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .task-title {
+    font-size: 1.3rem;
+  }
+
+  .person-detail,
+  .skills-title {
+    font-size: 0.95rem;
+  }
+
+  .task-item {
+    padding: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  .filter-cont {
+    grid-template-columns: repeat(4, max-content);
+    gap: 10px;
+  }
+
+  .task-title {
+    font-size: 1.4rem;
+  }
+
+  .person-detail,
+  .skills-title {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .filter-cont {
+    grid-template-columns: repeat(4, max-content);
+  }
+
+  .task-title {
+    font-size: 1.6rem;
+  }
+
+  .person-detail,
+  .skills-title {
+    font-size: 1.1rem;
+  }
+
+  .task-item {
+    padding: 18px;
+  }
 }

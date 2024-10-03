@@ -21,16 +21,9 @@ export class TasksService {
   private tasksSignal = signal<ITask[]>([]);
   constructor(private http: HttpClient) {}
 
-  /**
-   * Realiza una petición GET a un endpoint
-   * @param baseUrl
-   * @returns listado de tareas
-   */
-
-  get tasks(): WritableSignal<ITask[]> {
-    return this.tasksSignal;
+  setTasks(tasks: ITask[]): void {
+    this.tasksSignal.set(tasks);
   }
-
   getData(): Observable<ITask[]> {
     return this.http
       .get<ITaskGetResponse>(this.baseUrl, {
@@ -39,11 +32,9 @@ export class TasksService {
       .pipe(map((data: ITaskGetResponse) => data.record));
   }
 
-  putData(): Observable<ITaskPutResponse> {
-    return this.http.put<ITaskPutResponse>(this.baseUrl, {
+  putData(tasks: ITask[]): Observable<ITaskPutResponse> {
+    return this.http.put<ITaskPutResponse>(this.baseUrl, tasks, {
       headers: this.headers,
     });
   }
-
-  createTask(): void {}
 }
